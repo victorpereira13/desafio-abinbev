@@ -1,9 +1,5 @@
 # Project Setup Guide
 
-## Running the Application
-
-To run the application, simply open your web browser and navigate to the public IP address of the EC2 instance. The default credentials are used to access Airflow.
-
 ## AWS EC2 Setup
 
 1. **Log in to the AWS Management Console**:
