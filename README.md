@@ -53,4 +53,8 @@ Airflow is deployed on an AWS EC2 instance, providing a scalable and reliable or
 To run the application, simply open your web browser and navigate to the public IP address of the EC2 instance.
 The default credentials are used to access Airflow.
 
+## Documentation
+The detailed documentation for this project is available in the docs/ directory.
+
+
 
