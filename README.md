@@ -42,6 +42,12 @@ Airflow’s built-in monitoring tools are used to track the status of the DAGs a
 ## Testing
 Unit tests are included for each Databricks notebook to validate the data processing logic and data quality.
 
+## Execution Flow
+Execution flow of the pipeline:
+- **Bronze DAG**: Executes the job responsible for the bronze layer, and triggers Silver DAG
+- **Silver DAG**: Executes the job responsible for the silver layer, and triggers Gold DAG
+- **Gold DAG**: Aggregates and stores business-ready data
+
 ## Cloud Services Deployment
 ### AWS EC2
 Airflow is deployed on an AWS EC2 instance, providing a scalable and reliable orchestration environment.
@@ -67,3 +73,31 @@ Airflow is deployed on an AWS EC2 instance, providing a scalable and reliable or
   - **Google Colab**: Free and easy to use but limited in terms of scalability and integration with enterprise data sources.
   - **AWS Glue**: Serverless and scalable but less flexible and with a steeper learning curve for complex transformations.
 
+### Data Storage: Azure Blob Storage vs. Alternatives
+- **Azure Blob Storage**:
+  - **Pros**: Highly scalable, cost-effective, secure, and integrates well with other Azure services. Supports various data formats and access patterns.
+  - **Cons**: Requires familiarity with Azure ecosystem and can incur costs for data egress.
+  - **Why Chosen**: Azure Blob Storage offers robust scalability and security features, making it suitable for storing large volumes of data. Its integration with Databricks and other Azure services ensures seamless data flow and management.
+- **Alternatives**:
+  - **Amazon S3**: Equally scalable and widely used but might not integrate as seamlessly with Databricks if the rest of the infrastructure is on Azure.
+  - **Google Cloud Storage**: Similar capabilities but better suited for environments already using Google Cloud Platform.
+  - **HDFS (Hadoop Distributed File System)**: Great for on-premises big data environments but lacks the flexibility and ease of use of cloud storage solutions.
+
+### Hosting: AWS EC2 vs. Alternatives
+- **AWS EC2**:
+  - **Pros**: Highly customizable, scalable, and reliable. Wide range of instance types to suit different workloads.
+  - **Cons**: Requires management of infrastructure, which can be complex and time-consuming.
+  - **Why Chosen**: AWS EC2 provides the flexibility to configure the environment as needed, ensuring optimal performance for hosting Airflow. Its reliability and scalability make it a suitable choice for production workloads.
+- **Alternatives**:
+  - **Azure Virtual Machines**: Similar capabilities but might not be as cost-effective as EC2.
+  - **Google Compute Engine**: Comparable features but better suited for environments already using Google Cloud Platform.
+
+### Error Handling: Databricks Email Notifications vs. Alternatives
+- **Databricks Email Notifications**:
+  - **Pros**: Easy to set up, integrates well with Databricks workflows, and provides timely alerts for errors.
+  - **Cons**: Limited to email notifications, which might not be sufficient for all monitoring needs.
+  - **Why Chosen**: Databricks’ built-in email notification system ensures that any errors in the data processing workflows are promptly reported, allowing for quick resolution.
+- **Alternatives**:
+  - **PagerDuty**: More comprehensive alerting and incident management but requires additional setup and integration.
+  - **Slack Notifications**: Great for team collaboration but might require custom integration.
+  - **CloudWatch Alarms (AWS)**: Robust monitoring and alerting but more complex to set up and manage.
