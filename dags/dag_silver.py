@@ -7,21 +7,21 @@ default_args = {
   'owner': 'airflow'
 }
 
-with DAG('dag_bronze',
+with DAG('dag_silver',
   start_date = days_ago(2),
   schedule_interval = None,
   default_args = default_args
   ) as dag:
 
   opr_run_now = DatabricksRunNowOperator(
-    task_id = 'run_bronze_job',
+    task_id = 'run_silver_job',
     databricks_conn_id = 'databricks_default',
-    job_id = 824401042013269
+    job_id = 95302718323707
   )
 
-  trigger_dag_silver = TriggerDagRunOperator(
-    task_id='trigger_silver_dag',
-    trigger_dag_id='dag_silver'
+  trigger_dag_gold = TriggerDagRunOperator(
+    task_id='trigger_gold_dag',
+    trigger_dag_id='dag_gold'
   )
 
-opr_run_now >> trigger_dag_silver
+opr_run_now >> trigger_dag_gold
