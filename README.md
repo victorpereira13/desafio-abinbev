@@ -42,12 +42,6 @@ Airflow’s built-in monitoring tools are used to track the status of the DAGs a
 ## Testing
 Unit tests are included for each Databricks notebook to validate the data processing logic and data quality.
 
-## Execution Flow
-Execution flow of the pipeline:
-- **Bronze DAG**: Executes the job responsible for the bronze layer, and triggers Silver DAG
-- **Silver DAG**: Executes the job responsible for the silver layer, and triggers Gold DAG
-- **Gold DAG**: Aggregates and stores business-ready data
-
 ## Cloud Services Deployment
 ### AWS EC2
 Airflow is deployed on an AWS EC2 instance, providing a scalable and reliable orchestration environment.
