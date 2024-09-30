@@ -1,5 +1,3 @@
-# Project Documentation
-
 ## Introduction
 The aim of this project is to develop a data pipeline using various tools and technologies to fetch data from the Open Brewery DB API, process it, and store it. The project involves orchestration with Apache Airflow, data processing with Databricks notebooks using PySpark, and data storage within Azure Blob Storage.
 
