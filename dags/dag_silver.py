@@ -2,9 +2,12 @@ from airflow import DAG
 from airflow.providers.databricks.operators.databricks import DatabricksRunNowOperator
 from airflow.operators.dagrun_operator import TriggerDagRunOperator
 from airflow.utils.dates import days_ago
+from datetime import timedelta
 
 default_args = {
-  'owner': 'airflow'
+  'owner': 'airflow',
+  'retries': 3, 
+  'retry_delay': timedelta(minutes=5)
 }
 
 with DAG('dag_silver',
